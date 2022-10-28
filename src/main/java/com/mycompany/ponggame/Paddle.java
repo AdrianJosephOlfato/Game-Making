@@ -1,13 +1,4 @@
-
 package com.mycompany.ponggame;
-
-
-//public class Paddle {
-//
-//    public static void main(String args[]) {
-//        // TODO code application logic here
-//    }
-//}
 
 import java.awt.*;
 import java.awt.event.*;
@@ -19,7 +10,8 @@ public class Paddle extends Rectangle{
 	int speed = 10;
 	
 	Paddle(int x, int y, int PADDLE_WIDTH, int PADDLE_HEIGHT, int id){
-		super(x,y,PADDLE_WIDTH,PADDLE_HEIGHT);
+		super(x,y,PADDLE_WIDTH,PADDLE_HEIGHT);  //calling parent class constructor to create a rectangular object paddle & it will look
+                                                        // rectangular on gamePanel due to line 74, or paddle will be invisible 
 		this.id=id;
 	}
 	
@@ -43,6 +35,7 @@ public class Paddle extends Rectangle{
 			break;
 		}
 	}
+        
 	public void keyReleased(KeyEvent e) {
 		switch(id) {
 		case 1:
@@ -63,12 +56,15 @@ public class Paddle extends Rectangle{
 			break;
 		}
 	}
+        
 	public void setYDirection(int yDirection) {
 		yVelocity = yDirection;
 	}
+        
 	public void move() {
-		y= y + yVelocity;
+		y+= yVelocity;  // this y variable is from parent class i.e. Rectangle class 
 	}
+        
 	public void draw(Graphics g) {
 		if(id==1)
 			g.setColor(Color.blue);
@@ -76,4 +72,5 @@ public class Paddle extends Rectangle{
 			g.setColor(Color.red);
 		g.fillRect(x, y, width, height);
 	}
+        
 }
