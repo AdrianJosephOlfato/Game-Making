@@ -9,7 +9,8 @@ public class GameFrame extends JFrame{ // implements ActionListener{
 	
 	GameFrame(int mode){
             
-                this.setTitle("Ping Pong Game");
+                if(mode>=0) this.setTitle("Ping Pong Game");
+                else this.setTitle("Ping Pong Game - TRAINER MODE");
 		this.setResizable(false);
 		this.setBackground(Color.darkGray);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
