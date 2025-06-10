@@ -8,7 +8,7 @@ public class Ball extends Rectangle{
 	Random random;
 	int xVelocity;
 	int yVelocity;
-	int initialSpeed = 4;
+	int initialSpeed = 6;
         
         Ball(int x, int y, int width, int height, int xVel, int yVel, int mode){ //x & y are coordinates of origin of ball once the ball is created
 		super(x,y,width,height);  //super keyword is used to call the constructor of parent class, in our case Rectangle class & it takes 4 params
@@ -42,7 +42,7 @@ public class Ball extends Rectangle{
 	}
         
 	public void draw(Graphics g) {
-		g.setColor(Color.yellow);
+		g.setColor(Color.pink);
 		g.fillOval(x, y, height, width); //if this line is omitted, ball will exist, but will not be visible, & scores will keep changing
 	}
         
