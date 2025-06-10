@@ -8,7 +8,7 @@ public class GameFrame extends JFrame{
 	GameFrame(int mode){
             
                 if(mode>=0) this.setTitle("Ping Pong Game");
-                else this.setTitle("Ping Pong Game - TRAINER MODE");
+                else this.setTitle("Ping Pong Game - New Game");
 		this.setResizable(false);
 		this.setBackground(Color.white);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
