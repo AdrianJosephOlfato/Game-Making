@@ -9,7 +9,7 @@ public class GamePanel extends JPanel implements Runnable{
 
 	static final int GAME_WIDTH = 1500;  
 	static final int GAME_HEIGHT = (int)(GAME_WIDTH * (0.5555));
-	static final Dimension SCREEN_SIZE = new Dimension(GAME_WIDTH,GAME_HEIGHT);  //inbuilt class in java
+	static final Dimension SCREEN_SIZE = new Dimension(GAME_WIDTH,GAME_HEIGHT);  
 	static final int BALL_DIAMETER = 20;
 	static final int PADDLE_WIDTH = 25;
 	static final int PADDLE_HEIGHT = 100;
@@ -33,7 +33,7 @@ public class GamePanel extends JPanel implements Runnable{
 		score = new Score(GAME_WIDTH,GAME_HEIGHT);
                 
 		this.setFocusable(true);
-		this.addKeyListener(new AL());  //action listner, action event, key event, key listner 4 terms
+		this.addKeyListener(new AL());  
 		this.setPreferredSize(SCREEN_SIZE);
 		
 		gameThread = new Thread(this);
@@ -41,7 +41,7 @@ public class GamePanel extends JPanel implements Runnable{
 	}
         
         public void newBall() {
-		random = new Random();// created a new Random object, to use random.nextInt()  method as param in next line
+		random = new Random();
                 if(ballPaddleCollisions==0) ball = new Ball((GAME_WIDTH/2)-(BALL_DIAMETER/2), random.nextInt(GAME_HEIGHT-BALL_DIAMETER), BALL_DIAMETER, BALL_DIAMETER, 0,0,mode);
 	        else ball = new Ball((GAME_WIDTH/2)-(BALL_DIAMETER/2), random.nextInt(GAME_HEIGHT-BALL_DIAMETER), BALL_DIAMETER, BALL_DIAMETER, ball.xVelocity,ball.yVelocity,mode);
 	}
@@ -52,9 +52,9 @@ public class GamePanel extends JPanel implements Runnable{
 	}
         
         @Override
-	public void paint(Graphics g) { //overiding paint function of parent class(JPanel class) in the child class(present class) gives us access to graphichs object
-		image = createImage(getWidth(),getHeight());// thus we aren't supposed to pass Graphics parameter to the function, but we get it (g) to
-		graphics = image.getGraphics();// initialise image and graphics, and use it further in draw (userdefined function).
+	public void paint(Graphics g) { 
+		image = createImage(getWidth(),getHeight());
+		graphics = image.getGraphics();
 		draw(graphics);
 		g.drawImage(image,0,0,this);
 	}
@@ -64,7 +64,7 @@ public class GamePanel extends JPanel implements Runnable{
 		paddle2.draw(g);
 		ball.draw(g);
 		score.draw(g);
-                Toolkit.getDefaultToolkit().sync(); //  this line of code isn't in the video, it helps with the animation of ball and paddle
+                Toolkit.getDefaultToolkit().sync(); 
 
 	}
         
@@ -76,27 +76,27 @@ public class GamePanel extends JPanel implements Runnable{
         
 	public void checkCollision() {
 		
-		//bounce ball off top & bottom window edges
-		if(ball.y <=0) {  //y is varaiable of Rectangle class, which is parent class of Ball class
+		
+		if(ball.y <=0) {  
 			ball.setYVelocity(-ball.yVelocity);
 		}
 		if(ball.y >= GAME_HEIGHT-BALL_DIAMETER) {
 			ball.setYVelocity(-ball.yVelocity);
 		}
                 
-		//bounce ball off paddles
+		
 		if(ball.intersects(paddle1)) {
                         ballPaddleCollisions++;
 			ball.xVelocity = Math.abs(ball.xVelocity);
                         
-//                        if(mode>=0){
+
 			    if(ballPaddleCollisions%4==0 || mode<0) 
                             {
-                                ball.xVelocity++; //optional for more difficulty
-                                if(ball.yVelocity>0) ball.yVelocity++; //optional for more difficulty
+                                ball.xVelocity++; 
+                                if(ball.yVelocity>0) ball.yVelocity++; 
                                 else ball.yVelocity--;
                             }
-//                      
+                     
 			ball.setXVelocity(ball.xVelocity);
 			ball.setYVelocity(ball.yVelocity);
 		}
@@ -106,8 +106,8 @@ public class GamePanel extends JPanel implements Runnable{
                         
 			     if(ballPaddleCollisions%4==0  || mode<0) 
                              {
-                                ball.xVelocity++; //optional for more difficulty
-                                if(ball.yVelocity>0) ball.yVelocity++; //optional for more difficulty
+                                ball.xVelocity++; 
+                                if(ball.yVelocity>0) ball.yVelocity++; 
                                 else ball.yVelocity--;
                              }
 
@@ -115,7 +115,7 @@ public class GamePanel extends JPanel implements Runnable{
 			ball.setYVelocity(ball.yVelocity);
 		}
                 
-		//stops paddles at window edges
+		
 		if(paddle1.y<=0)
 			paddle1.y=0;
 		if(paddle1.y >= (GAME_HEIGHT-PADDLE_HEIGHT))
@@ -125,11 +125,11 @@ public class GamePanel extends JPanel implements Runnable{
 		if(paddle2.y >= (GAME_HEIGHT-PADDLE_HEIGHT))
 			paddle2.y = GAME_HEIGHT-PADDLE_HEIGHT;
                 
-		//give a player 1 point and creates new paddles & ball
+		
 		if(ball.x <=0) {
 			score.player2++;
                         System.out.println("Player 2: "+score.player2+ " xVel | yVel: "+ ball.xVelocity+", "+ball.yVelocity);
-			newPaddles();  //qsn: how the old paddles and ball are stopped from being shown on the panel????
+			newPaddles();  
 			newBall();
 			
 		}
@@ -162,7 +162,7 @@ public class GamePanel extends JPanel implements Runnable{
 		}
 	}
         
-	public class AL extends KeyAdapter{          // nested class : e.g. of encapsulation
+	public class AL extends KeyAdapter{          
 		public void keyPressed(KeyEvent e) {
 			paddle1.keyPressed(e);
 			paddle2.keyPressed(e);

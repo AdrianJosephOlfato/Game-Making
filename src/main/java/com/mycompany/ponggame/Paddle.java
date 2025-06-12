@@ -10,8 +10,8 @@ public class Paddle extends Rectangle{
 	int speed = 10;
 	
 	Paddle(int x, int y, int PADDLE_WIDTH, int PADDLE_HEIGHT, int id){
-		super(x,y,PADDLE_WIDTH,PADDLE_HEIGHT);  //calling parent class constructor to create a rectangular object paddle & it will look
-                                                        // rectangular on gamePanel due to line 74, or paddle will be invisible 
+		super(x,y,PADDLE_WIDTH,PADDLE_HEIGHT);  
+                                                        
 		this.id=id;
 	}
 	
@@ -62,7 +62,7 @@ public class Paddle extends Rectangle{
 	}
         
 	public void move() {
-		y+= yVelocity;  // this y variable is from parent class i.e. Rectangle class 
+		y+= yVelocity;   
 	}
         
 	public void draw(Graphics g) {
